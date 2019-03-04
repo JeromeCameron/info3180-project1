@@ -1,0 +1,19 @@
+body {
+    padding-top: 5rem;
+}
+.card{
+    padding: 20px;
+    padding-left: 50px;
+    border-top: 5px solid blue;
+    width:600px;
+    /*align-items: center;*/
+}
+.form-group input{
+    width: 400px;
+}
+
+.btn-primary{
+    margin-top: 20px;
+    font-size: 14px;
+    /*background-color: blue;*/
+}
