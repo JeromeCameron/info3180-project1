@@ -3,33 +3,70 @@ from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from app.models import UserProfile
 from flask import session
+from app.forms import profileForm
+from datetime import date
 
 
 ###
 # Routing for your application.
 ###
 
+#Render home page
 @app.route('/')
 def home():
     return render_template('home.html')
-    
+
+#Render about page   
 @app.route('/about/')
 def about():
     return render_template('about.html')
-    
-@app.route('/profile/')
+
+#Render add profile page    
+@app.route('/profile/', methods = ["GET", "POST"])
 def profile():
-    return render_template('profile.html')
+    form = profileForm()
     
+    if request.method == "POST" and form.validate_on_submit():
+        #collect from data
+        fname = form.firstName.data
+        lname = form.lastName.data
+        gender = form.gender.data
+        email = form.email.data
+        location = form.location.data
+        bio = form.biography.data
+        date_joined = str(date.today())
+        
+        #connect to database and save data
+        user_profile = UserProfile(fname, lname, gender, email, location, bio, date_joined)
+        db.session.add(user_profile)
+        db.session.commit()
+        
+        flash("Your profile has been sucessfully added!", "success")
+        return redirect(url_for('profiles.html'))
+        
+    return render_template('add_profile.html', form=form)
+
+#Render page that displays all user    
 @app.route('/profiles/')
 def profiles():
-    return render_template('profiles.html')
+    
+    #connect to database and fectch user profiles
+    users = UserProfile.query.order_by(UserProfile.first_name).all()
+    return render_template('profiles.html', users=users)
 
+#Render page that displays a single user page using user ID   
+@app.route('/profile/<userid>', methods=["POST"])
+def view_profile():
+    
+    #connect to database and fectch user profile
+    user = UserProfile.query.filter_by(user_id='userid').first()
+    return render_template('profile.html', user=user)
+
+#####_______________________________________________________________________________________________#####
 
 ###
 # The functions below should be applicable to all Flask apps.
 ###
-
 
 @app.route('/<file_name>.txt')
 def send_text_file(file_name):
