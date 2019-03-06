@@ -14,8 +14,7 @@ class UserProfile(db.Model):
     created_on = db.Column(db.String(10))
     
     
-    def __init__(self, ID,first_name, last_name, gender, email, location, biography, photo, created_on):
-        self.ID = ID
+    def __init__(self, first_name, last_name, gender, email, location, biography, created_on):
         self.first_name = first_name
         self.last_name = last_name
         self.gender = gender
@@ -23,3 +22,4 @@ class UserProfile(db.Model):
         self.location = location
         self.biography = biography
         self.created_on = created_on
+        

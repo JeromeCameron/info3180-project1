@@ -35,7 +35,7 @@ def profile():
         location = form.location.data
         bio = form.biography.data
         date_joined = str(date.today())
-        
+       
         #connect to database and save data
         user_profile = UserProfile(fname, lname, gender, email, location, bio, date_joined)
         db.session.add(user_profile)
