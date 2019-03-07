@@ -55,11 +55,11 @@ def profiles():
     return render_template('profiles.html', users=users)
 
 #Render page that displays a single user page using user ID   
-@app.route('/profile/<userid>', methods=["POST"])
+@app.route('/profile/<userid>', methods=["GET"])
 def view_profile(userid):
     
     #connect to database and fectch user profile
-    user = UserProfile.query.filter_by(user_id='userid').first()
+    user = UserProfile.query.filter_by(ID=userid).first()
     return render_template('profile.html', user=user)
 
 #####_______________________________________________________________________________________________#####
