@@ -42,7 +42,7 @@ def profile():
         db.session.commit()
         
         flash("Your profile has been sucessfully added!", "success")
-        return redirect(url_for('profiles.html'))
+        return redirect(url_for('profiles'))
         
     return render_template('add_profile.html', form=form)
 
@@ -56,7 +56,7 @@ def profiles():
 
 #Render page that displays a single user page using user ID   
 @app.route('/profile/<userid>', methods=["POST"])
-def view_profile():
+def view_profile(userid):
     
     #connect to database and fectch user profile
     user = UserProfile.query.filter_by(user_id='userid').first()
