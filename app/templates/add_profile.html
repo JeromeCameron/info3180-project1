@@ -2,7 +2,7 @@
 
 {% block main %}
 
-<h1 class="page-header">Add Profile</h1>
+<h1 class="page-header font-weight-bolder">Add Profile</h1>
     <div class="card">
         <form action="{{ url_for('profile') }}" method="post">
             {% include 'flash_messages.html' %}
@@ -12,36 +12,36 @@
             <div class = "card-body">
                 
                 <div class="form-group">
-                    {{ form.firstName.label }} {{ form.firstName(class="form-control") }}
+                    {{ form.firstName.label(class="font-weight-bold")}} {{ form.firstName(class="form-control") }}
                 </div>
                 
                 <div class="form-group">
-                    {{ form.lastName.label }} {{ form.lastName(class="form-control") }}
+                    {{ form.lastName.label(class="font-weight-bold")}} {{ form.lastName(class="form-control") }}
                 </div>
                 
                 <div class="form-group">
-                    {{ form.gender.label }} {{ form.gender(class="form-control") }}
+                    {{ form.gender.label(class="font-weight-bold")}} {{ form.gender(class="form-control, custom-select", placeholder="Select Gender") }}
                 </div>
                 
                 <div class="form-group">
-                    {{ form.email.label }} {{ form.email(class="form-control", placeholder="john.doe@mail.com.com") }}
+                    {{ form.email.label(class="font-weight-bold")}} {{ form.email(class="form-control", placeholder="john.doe@mail.com") }}
                 </div>
                 
                 <div class="form-group">
-                    {{ form.location.label }} {{ form.location(class="form-control") }}
+                    {{ form.location.label(class="font-weight-bold")}} {{ form.location(class="form-control", placeholder="Galina, St. Mary") }}
                 </div>
                 
                 <div class="form-group">
-                    {{ form.biography.label }} {{ form.biography(class="form-control") }}
+                    {{ form.biography.label(class="font-weight-bold")}} {{ form.biography(class="form-control") }}
                 </div>
                 
-                <!--<div>-->
-                <!--    <label for="photo">Profile Picture</label>-->
-                <!--    <input type="file" name="photo" class="form-control-file"/>-->
-                <!--</div>-->
+                <div id = "photo_box">
+                    <label for="photo" class="font-weight-bold">Profile Picture</label>
+                    <input type="file" name="photo" class="form-control-file"/>
+                </div>
                 
-                <div>
-                    <button type="submit" class="btn btn-primary">Add Profile</button>
+                <div id = "button">
+                    <button type="submit" class="btn btn-success font-weight-bold">Add Profile</button>
                 </div>
                 
             </div>

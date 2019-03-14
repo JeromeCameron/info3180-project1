@@ -8,8 +8,8 @@ from werkzeug.utils import secure_filename
 class profileForm(FlaskForm):
     firstName = StringField('First Name', validators=[InputRequired()])
     lastName = StringField('Last Name', validators=[InputRequired()])
-    gender = SelectField('Gender', choices = [('Male','Male'), ('Female','Female')], validators=[InputRequired()])
+    gender = SelectField('Gender', choices = [('s','Select Gender'),('Male','Male'), ('Female','Female')], validators=[InputRequired()])
     email = StringField('Email', validators=[InputRequired(), Email()])
     location = StringField('Location', validators=[InputRequired()])
     biography = TextAreaField('Biography', validators=[InputRequired()])
-    # photo = FileField('image', validators=[FileRequired(),FileAllowed(['jpg', 'png'], 'Images only!')])
+    photo = FileField('image', validators=[FileRequired(),FileAllowed(['jpg', 'png'], 'Images only!')])

@@ -35,6 +35,11 @@ def profile():
         location = form.location.data
         bio = form.biography.data
         date_joined = datetime.now().strftime("%B %d, %Y")
+        
+        
+        # img = form.photo.data
+        # filename = secure_filename(img.filename)
+        # img.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
        
         #connect to database and save data
         user_profile = UserProfile(fname, lname, gender, email, location, bio, date_joined)
@@ -61,6 +66,7 @@ def view_profile(userid):
     #connect to database and fectch user profile
     user = UserProfile.query.filter_by(ID=userid).first()
     return render_template('profile.html', user=user)
+    
 
 #####_______________________________________________________________________________________________#####
 
