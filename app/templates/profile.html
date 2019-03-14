@@ -3,21 +3,21 @@
 {% block main %}
     <div class = "container">
         
-        <div class="card container d-flex flex-column justify-content-around class_mod">
+        <div class = "d-flex card container flex-column stage">
             
-          <div class="d-flex flex-row justify-content-around align-items-center">
+            <div class="d-flex flex-row justify-content-between align-items-center" id = "top">
               
-            <div>
-            <img class="pic_single" src="{{ url_for('static', filename="images/Mr Zombie.png") }}" />
-            </div>
-            
+                <div class = "d-flex">
+                    <img class="pic_single" src="{{ url_for('static', filename="images/Mr Zombie.png") }}" />
+                </div>
+                
                 <div>
-                    <div>
+                    <div class = "d-flex">
                         <h6 class = "profile_info" id = "username">{{user.first_name}} {{user.last_name}}</h6>
                     </div>
                     
                     <div class = "d-flex flex-row profile_info align-items-center">
-                        <img class = "icons" src="{{ url_for('static', filename="images/user.png") }}" />
+                        <img class = "icons" src="{{ url_for('static', filename="images/mail.png") }}" />
                         <p class = "moreInfo">{{user.email}}</p>
                     </div>
                     
@@ -27,22 +27,24 @@
                     </div>
                     
                     <div class = "d-flex flex-row profile_info align-items-center">
-                        <img class = "icons" src="{{ url_for('static', filename="images/location.png") }}" />
-                        <p class = "moreInfo">{{user.created_on}}</p>
+                        <img class = "icons" src="{{ url_for('static', filename="images/calendar.png") }}" />
+                        <p class = "moreInfo">{{user.joined}}</p>
                     </div>
                 </div>
             
             </div>
             
-            <div class = "container">
+            <div class = "d-flex flex-column justify-content-between" id = "middle">
                 <h6>About Me</h6>
-                <div>
+                
+                <div class = "d-flex">
                     <p class = "moreInfo">{{user.biography}}</p>
                 </div>
-                <div class="d-flex flex-row justify-content-around">
+            </div>
+            
+            <div class="d-flex flex-row justify-content-between" id = "bottom">
                     <button type="submit" class="btn btn-success profile-button">Send Message</button>
                     <button type="submit" class="btn btn-primary profile-button">Follow</button>
-                </div>
             </div>
             
         </div>

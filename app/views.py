@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from app.models import UserProfile
 from flask import session
 from app.forms import profileForm
-from datetime import date
+from datetime import datetime, date
 
 
 ###
@@ -34,7 +34,7 @@ def profile():
         email = form.email.data
         location = form.location.data
         bio = form.biography.data
-        date_joined = str(date.today())
+        date_joined = datetime.now().strftime("%B %d, %Y")
        
         #connect to database and save data
         user_profile = UserProfile(fname, lname, gender, email, location, bio, date_joined)
