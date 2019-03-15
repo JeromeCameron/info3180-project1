@@ -44,9 +44,9 @@ def profile():
         
         #set custom file name for reference
         if filename.endswith('.' + "png"):
-             photo_name = "pic_"+fname+"_"+datetime.now().strftime("%B-%d-%Y_%H-%M-%S")+".png"
+             photo_name = "pic_"+fname+"_"+email+".png"
         elif filename.endswith('.' + "jpg"):
-              photo_name = "pic_"+fname+"_"+datetime.now().strftime("%B-%d-%Y_%H-%M-%S")+".jpg"
+              photo_name = "pic_"+fname+"_"+email+".jpg"
         
         img.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_name))
              
