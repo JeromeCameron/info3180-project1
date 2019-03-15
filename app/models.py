@@ -12,9 +12,10 @@ class UserProfile(db.Model):
     location = db.Column(db.String(255))
     biography = db.Column(db.VARCHAR)
     joined = db.Column(db.String(50))
+    photo = db.Column(db.String(100))
     
     
-    def __init__(self, first_name, last_name, gender, email, location, biography, joined):
+    def __init__(self, first_name, last_name, gender, email, location, biography, joined, photo):
         self.first_name = first_name
         self.last_name = last_name
         self.gender = gender
@@ -22,4 +23,5 @@ class UserProfile(db.Model):
         self.location = location
         self.biography = biography
         self.joined = joined
+        self.photo = photo
         

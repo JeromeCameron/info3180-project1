@@ -3,12 +3,12 @@
 {% block main %}
     <div class = "container">
         
-        <div class = "d-flex card container flex-column stage">
+        <div class = "d-flex card container flex-column stage class_mod">
             
             <div class="d-flex flex-row justify-content-between align-items-center" id = "top">
               
                 <div class = "d-flex">
-                    <img class="pic_single" src="{{ url_for('static', filename="images/Mr Zombie.png") }}" />
+                    <img class="pic_single" src="{{ url_for('static', filename='uploads/' + user.photo) }}" />
                 </div>
                 
                 <div>

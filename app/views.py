@@ -5,6 +5,8 @@ from app.models import UserProfile
 from flask import session
 from app.forms import profileForm
 from datetime import datetime, date
+import os
+from werkzeug.utils import secure_filename
 
 
 ###
@@ -24,6 +26,7 @@ def about():
 #Render add profile page    
 @app.route('/profile/', methods = ["GET", "POST"])
 def profile():
+    
     form = profileForm()
     
     if request.method == "POST" and form.validate_on_submit():
@@ -35,14 +38,20 @@ def profile():
         location = form.location.data
         bio = form.biography.data
         date_joined = datetime.now().strftime("%B %d, %Y")
+        img = form.photo.data
         
+        filename = secure_filename(img.filename)
         
-        # img = form.photo.data
-        # filename = secure_filename(img.filename)
-        # img.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-       
+        #set custom file name for reference
+        if filename.endswith('.' + "png"):
+             photo_name = "pic_"+fname+"_"+datetime.now().strftime("%B-%d-%Y_%H-%M-%S")+".png"
+        elif filename.endswith('.' + "jpg"):
+              photo_name = "pic_"+fname+"_"+datetime.now().strftime("%B-%d-%Y_%H-%M-%S")+".jpg"
+        
+        img.save(os.path.join(app.config['UPLOAD_FOLDER'], photo_name))
+             
         #connect to database and save data
-        user_profile = UserProfile(fname, lname, gender, email, location, bio, date_joined)
+        user_profile = UserProfile(fname, lname, gender, email, location, bio, date_joined, photo_name)
         db.session.add(user_profile)
         db.session.commit()
         
@@ -50,6 +59,7 @@ def profile():
         return redirect(url_for('profiles'))
         
     return render_template('add_profile.html', form=form)
+
 
 #Render page that displays all user    
 @app.route('/profiles/')

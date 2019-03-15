@@ -4,7 +4,7 @@
 
 <h1 class="page-header font-weight-bolder">Add Profile</h1>
     <div class="card">
-        <form action="{{ url_for('profile') }}" method="post">
+        <form action="{{ url_for('profile') }}" method="post" enctype="multipart/form-data">
             {% include 'flash_messages.html' %}
             
             {{ form.csrf_token }}
